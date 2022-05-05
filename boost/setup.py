@@ -22,7 +22,7 @@ ext_modules = [
     Extension("foo_ext",
               sources=["test.cpp"],
               library_dirs=["/usr/local/lib", "/usr/lib/x86_64-linux-gnu/"],
-              libraries=["boost_python-py35"],
+              libraries=["boost_python310"],
               include_dirs=["/usr/include/boost"],
               language = "c++"
               )
