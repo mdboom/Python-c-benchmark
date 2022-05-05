@@ -18,11 +18,7 @@
 import os
 os.sched_setaffinity(os.getpid(), [4])
 
-try:
-    import foo_ext
-except:
-    from ctypes import *
-    foo_ext = cdll.LoadLibrary("../ctypes/liba.so")
+import foo_ext
 import time
 import argparse
 
