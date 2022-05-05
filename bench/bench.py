@@ -97,7 +97,7 @@ def void_foo_stdstring_str(count):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Python -> C benchmark')
-    parser.add_argument('count', metavar='c', type=int, nargs='?', default=100000, help='number of calls made')
+    parser.add_argument('count', metavar='c', type=int, nargs='?', default=1000000, help='number of calls made')
     args = parser.parse_args()
 
     functions = [

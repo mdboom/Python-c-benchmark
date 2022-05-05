@@ -26,66 +26,104 @@ static PyObject *void_foo_void(PyObject *self, PyObject *args) {
 
 static PyObject *int_foo_int(PyObject *self, PyObject *args) {
     PyObject *a;
+    int a_int;
 
     if (!PyArg_UnpackTuple(args, "ref", 1, 1, &a)) {
         return NULL;
     }
 
-    int a_int = PyLong_AsLong(a);
+    a_int = PyLong_AsLong(a);
+    if (a_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
 
     return PyLong_FromLong(a_int + 1);
 }
 
 static PyObject *void_foo_int(PyObject *self, PyObject *args) {
     PyObject *a;
+    int a_int;
 
     if (!PyArg_UnpackTuple(args, "ref", 1, 1, &a)) {
         return NULL;
     }
 
-    int a_int = PyLong_AsLong(a);
+    a_int = PyLong_AsLong(a);
+    if (a_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
 
     Py_RETURN_NONE;
 }
 
 static PyObject *void_foo_int_int(PyObject *self, PyObject *args) {
     PyObject *a, *b;
+    int a_int, b_int;
 
     if (!PyArg_UnpackTuple(args, "ref", 2, 2, &a, &b)) {
         return NULL;
     }
 
-    int a_int = PyLong_AsLong(a);
-    int b_int = PyLong_AsLong(b);
+    a_int = PyLong_AsLong(a);
+    if (a_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
+    b_int = PyLong_AsLong(b);
+    if (b_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
 
     Py_RETURN_NONE;
 }
 
 static PyObject *void_foo_int_int_int(PyObject *self, PyObject *args) {
     PyObject *a, *b, *c;
+    int a_int, b_int, c_int;
 
     if (!PyArg_UnpackTuple(args, "ref", 3, 3, &a, &b, &c)) {
         return NULL;
     }
 
-    int a_int = PyLong_AsLong(a);
-    int b_int = PyLong_AsLong(b);
-    int c_int = PyLong_AsLong(c);
+    a_int = PyLong_AsLong(a);
+    if (a_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
+    b_int = PyLong_AsLong(b);
+    if (b_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
+    c_int = PyLong_AsLong(c);
+    if (c_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
 
     Py_RETURN_NONE;
 }
 
 static PyObject *void_foo_int_int_int_int(PyObject *self, PyObject *args) {
     PyObject *a, *b, *c, *d;
+    int a_int, b_int, c_int, d_int;
 
     if (!PyArg_UnpackTuple(args, "ref", 4, 4, &a, &b, &c, &d)) {
         return NULL;
     }
 
-    int a_int = PyLong_AsLong(a);
-    int b_int = PyLong_AsLong(b);
-    int c_int = PyLong_AsLong(c);
-    int d_int = PyLong_AsLong(d);
+    a_int = PyLong_AsLong(a);
+    if (a_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
+    b_int = PyLong_AsLong(b);
+    if (b_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
+    c_int = PyLong_AsLong(c);
+    if (c_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
+    d_int = PyLong_AsLong(d);
+    if (d_int == -1 && PyErr_Occurred()) {
+      return NULL;
+    }
 
     Py_RETURN_NONE;
 }
@@ -97,7 +135,11 @@ static PyObject *void_foo_constchar(PyObject *self, PyObject *args) {
         return NULL;
     }
 
-    const char *str = PyUnicode_AS_DATA(a);
+    Py_ssize_t size;
+    const char *str = PyUnicode_AsUTF8AndSize(a, &size);
+    if (str == NULL) {
+      return NULL;
+    }
 
     Py_RETURN_NONE;
 }

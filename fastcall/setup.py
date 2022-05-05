@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -15,7 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-g++ -c -fPIC test.cpp
-g++ -shared -o liba.so test.o
-pip install git+https://github.com/cython/cython.git
-python3 setup.py install
+
+from distutils.core import setup, Extension
+
+module1 = Extension('foo_ext',
+                    sources = ['foo.c'])
+
+setup (name = 'Foo',
+       version = '1.0',
+       description = 'This is a demo package',
+       ext_modules = [module1])
