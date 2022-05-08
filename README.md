@@ -2,6 +2,7 @@
 Python -> C/C++ function call overhead benchmark. This repository allows you to run benchmarks on 6 different approaches:
 
 * boost
+* cffi
 * ctypes
 * cython
 * extension modules
